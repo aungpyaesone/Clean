@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="disk_full">Failed to save item because you disk is full.</string>
+    <string name="error_request_timeout">The request time out</string>
+    <string name="error_too_many_request">"You've hit your rate limit. "</string>
+    <string name="error_no_internet">Couldn\'t reach server.Please check you connection.</string>
+    <string name="error_payload_toolarge">" The file you're trying to upload is too large."</string>
+    <string name="error_server_error">Oops,Something went wrong, please try again.</string>
+    <string name="error_serialization">Oops,couldn\'t parse data.</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="clean">Runique</string>
+    <string name="welcome_to_runique">Welcome to Runique!</string>
+    <string name="runique_descritption">Track you runs, set goals and achieve fitness milestones with our intuitve app.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+</resources>

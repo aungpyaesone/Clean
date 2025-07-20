@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.10.1" type="baseline" client="gradle" dependencies="false" name="AGP (8.10.1)" variant="all" version="8.10.1">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 13 (current min is 3): `GradientBackground`"
+        errorLine1="        GradientBackground ("
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/apsone/core/presentation/designsystem/components/GradientBackground.kt"
+            line="98"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fillType` is only used in API level 24 and higher (current min is 1)"
+        errorLine1="      android:fillType=&quot;evenOdd&quot;/>"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/logo.xml"
+            line="9"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `scaleX` is only used in API level 11 and higher (current min is 1)"
+        errorLine1="      android:scaleX=&quot;0.5&quot;"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/logo_scaled_down.xml"
+            line="9"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `scaleY` is only used in API level 11 and higher (current min is 1)"
+        errorLine1="      android:scaleY=&quot;0.5&quot;>"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/logo_scaled_down.xml"
+            line="10"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fillType` is only used in API level 24 and higher (current min is 1)"
+        errorLine1="        android:fillType=&quot;evenOdd&quot;/>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/logo_scaled_down.xml"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="VectorRaster"
+        message="This tag is not supported in images generated from this vector icon for API &lt; 21; check generated icon to make sure it looks acceptable"
+        errorLine1="    &lt;clip-path"
+        errorLine2="    ^">
+        <location
+            file="src/main/res/drawable/finish.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="VectorRaster"
+        message="This tag is not supported in images generated from this vector icon for API &lt; 21; check generated icon to make sure it looks acceptable"
+        errorLine1="    &lt;clip-path"
+        errorLine2="    ^">
+        <location
+            file="src/main/res/drawable/run_outlined.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+</issues>
