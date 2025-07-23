@@ -1,5 +1,6 @@
 package com.apsone.clean
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -8,8 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.apsone.auth.presentation.intro.IntroScreen
 import com.apsone.auth.presentation.intro.IntroScreenRoot
+import com.apsone.auth.presentation.login.LoginScreenRoot
 import com.apsone.auth.presentation.register.RegisterScreenRoot
 
 @Composable
@@ -45,6 +46,25 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController){
                     restoreState = true
                 } },
                 onSuccessfulRegistration = {navController.navigate("login")}
+            )
+        }
+
+        composable (route = "login"){
+            LoginScreenRoot(
+                onLoginSuccess = {
+                    navController.navigate("run") {
+                        popUpTo("auth") {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignUpClick = { navController.navigate("register"){
+                    popUpTo("login"){
+                        inclusive = true
+                        saveState = true
+                    }
+                    restoreState = true
+                } }
             )
         }
 

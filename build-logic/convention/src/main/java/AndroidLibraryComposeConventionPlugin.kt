@@ -11,11 +11,11 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
         target.run {
             pluginManager.run {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
+                apply("org.jetbrains.kotlin.plugin.compose")
             }
-            extensions.configure<KotlinAndroidProjectExtension> {
+            /*extensions.configure<KotlinAndroidProjectExtension> {
                 jvmToolchain(17)
-            }
+            }*/
 
             val extension = extensions.getByType(LibraryExtension::class.java)
             configureAndroidCompose(extension)

@@ -14,9 +14,9 @@ internal fun Project.configureAndroidCompose(
         buildFeatures {
             compose = true
         }
-        composeOptions {
+        /*composeOptions {
             kotlinCompilerExtensionVersion = libs.findVersion("composeCompiler").get().toString()
-        }
+        }*/
 
         lint {
             baseline = file("lint-baseline.xml")

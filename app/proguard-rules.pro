@@ -25,4 +25,5 @@
 -keep class com.apsone.auth.data.di.AuthDataModuleKt { *; }
 # Keep Koin modules
 -keep class com.apsone.auth.data.di.** { *; }
+-keep class androidx.compose.foundation.text2.input.** { *; }
 

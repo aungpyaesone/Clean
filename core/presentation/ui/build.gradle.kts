@@ -1,9 +1,13 @@
 plugins {
     alias(libs.plugins.clean.android.library.compose)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
     namespace = "com.apsone.core.presentation.ui"
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -16,4 +20,5 @@ dependencies {
 
     implementation(projects.core.domain)
     implementation(projects.core.presentation.designsystem)
+    implementation(libs.core.ktx)
 }
