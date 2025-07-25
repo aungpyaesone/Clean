@@ -3,6 +3,7 @@ package com.apsone.clean
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
@@ -15,12 +16,15 @@ import com.apsone.auth.presentation.register.RegisterScreenRoot
 
 @Composable
 fun NavigationRoot(
-    navController: NavHostController) {
+    navController: NavHostController,
+    isLogin: Boolean = false,
+    ) {
     NavHost(
         navController = navController,
-        startDestination = "auth"
+        startDestination = if(isLogin) "run" else "auth"
     ){
         authGraph(navController)
+        runGraph(navController)
     }
 }
 
@@ -68,5 +72,16 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController){
             )
         }
 
+    }
+}
+
+private fun NavGraphBuilder.runGraph(navController: NavHostController){
+    navigation(
+        startDestination = "run_overview",
+        route = "run"
+    ) {
+        composable("run_overview"){
+            Text(text = "Run overview")
+        }
     }
 }
