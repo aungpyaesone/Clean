@@ -13,6 +13,8 @@ import androidx.navigation.compose.navigation
 import com.apsone.auth.presentation.intro.IntroScreenRoot
 import com.apsone.auth.presentation.login.LoginScreenRoot
 import com.apsone.auth.presentation.register.RegisterScreenRoot
+import com.apsone.run.presentation.active_run.ActiveRunScreenRoot
+import com.apsone.run.presentation.run_overview.RunOverViewScreenRot
 
 @Composable
 fun NavigationRoot(
@@ -81,7 +83,16 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController){
         route = "run"
     ) {
         composable("run_overview"){
-            Text(text = "Run overview")
+            RunOverViewScreenRot(onStartRunClick = {
+                navController.navigate("active_run")
+            })
+        }
+        composable("active_run") {
+            ActiveRunScreenRoot(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

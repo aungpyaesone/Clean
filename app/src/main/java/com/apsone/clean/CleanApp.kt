@@ -5,6 +5,7 @@ import com.apsone.auth.data.di.authDataModule
 import com.apsone.auth.presentation.di.authVideoModelModule
 import com.apsone.clean.di.appModule
 import com.apsone.core.data.di.coreDataModule
+import com.apsone.run.presentation.di.runViewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -23,7 +24,8 @@ class CleanApp : Application(){
                 authDataModule,
                 authVideoModelModule,
                 appModule,
-                coreDataModule
+                coreDataModule,
+                runViewModelModule
             )
         }
     }
