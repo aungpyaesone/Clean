@@ -1,6 +1,6 @@
 package com.apsone.run.presentation.active_run
 
-import android.location.Location
+import com.apsone.core.domain.location.Location
 import com.apsone.run.domain.RunData
 import kotlin.time.Duration
 

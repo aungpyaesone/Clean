@@ -28,12 +28,14 @@ import com.apsone.core.presentation.designsystem.CleanTheme
 import com.apsone.core.presentation.designsystem.R
 import com.apsone.core.presentation.designsystem.StartIcon
 import com.apsone.core.presentation.designsystem.StopIcon
+import com.apsone.core.presentation.designsystem.components.CleanActionButton
 import com.apsone.core.presentation.designsystem.components.CleanDialog
 import com.apsone.core.presentation.designsystem.components.CleanFloatingAction
 import com.apsone.core.presentation.designsystem.components.CleanOutlineActionButton
 import com.apsone.core.presentation.designsystem.components.CleanScaffold
 import com.apsone.core.presentation.designsystem.components.CleanToolbar
 import com.apsone.run.presentation.active_run.components.RunDataCard
+import com.apsone.run.presentation.active_run.maps.TrackerMap
 import com.apsone.run.presentation.util.hasLocationPermission
 import com.apsone.run.presentation.util.hasNotificationPermission
 import com.apsone.run.presentation.util.shouldShowLocationPermissionRationale
@@ -43,6 +45,7 @@ import org.koin.androidx.compose.koinViewModel
 @RequiresApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 @Composable
 fun ActiveRunScreenRoot(
+    onServiceToggle: (Boolean) -> Unit,
     onBackClick: () -> Unit = {},
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
@@ -56,7 +59,8 @@ fun ActiveRunScreenRoot(
                 else -> {}
             }
             viewModel.onAction(action)
-        }
+        },
+        onServiceToggle = onServiceToggle
     )
 
 }
@@ -66,6 +70,7 @@ fun ActiveRunScreenRoot(
 
 private fun ActiveRunScreen(
     state: ActiveRunState,
+    onServiceToggle : (isServiceRunning: Boolean) -> Unit = {},
     onAction: (ActiveRunAction) -> Unit
 ) {
     val context = LocalContext.current
@@ -110,6 +115,19 @@ private fun ActiveRunScreen(
             permissionLauncher.requestCleanPermission(context)
         }
     }
+
+    LaunchedEffect(state.isRunFinished) {
+        if(state.isRunFinished){
+            onServiceToggle(false)
+        }
+    }
+
+    LaunchedEffect(key1 = state.shouldTrack) {
+        if(context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive){
+            onServiceToggle(true)
+        }
+    }
+
     CleanScaffold(
         withGradientBackground = false,
         topAppBar = {
@@ -142,6 +160,13 @@ private fun ActiveRunScreen(
     ){ padding ->
         Box(modifier = Modifier.fillMaxSize()
             .background(MaterialTheme.colorScheme.surface)){
+            TrackerMap(
+                isRunFinished = state.isRunFinished,
+                currentLocation = state.location,
+                listLocation = state.runData.locations,
+                onSnapshot = {},
+                modifier = Modifier.fillMaxSize()
+            )
             RunDataCard(
                 runData = state.runData,
                 elapsedTime = state.elapsedTime,
@@ -150,6 +175,34 @@ private fun ActiveRunScreen(
                     .fillMaxWidth()
             )
         }
+    }
+
+    if(!state.shouldTrack && state.hasStartRunning){
+        CleanDialog(
+            title = stringResource(R.string.running_is_paused),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            description = stringResource(R.string.resume_or_finish_run),
+            primaryButton = {
+                CleanActionButton(
+                    modifier = Modifier.weight(1f),
+                    text = stringResource(R.string.resume),
+                    isLoadings = false ,
+                ) {
+                    onAction(ActiveRunAction.OnResumeRunClick)
+                }
+            },
+            secondaryButton = {
+                CleanOutlineActionButton(
+                    modifier = Modifier.weight(1f),
+                    text = stringResource(R.string.finish),
+                    isLoadings = state.isSavingRun,
+                ) {
+                    onAction(ActiveRunAction.OnFinishRunClick)
+                }
+            }
+        )
     }
 
     if(state.showLocationRationale || state.showNotificationRationale){
