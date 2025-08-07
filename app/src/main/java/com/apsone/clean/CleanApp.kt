@@ -5,6 +5,7 @@ import com.apsone.auth.data.di.authDataModule
 import com.apsone.auth.presentation.di.authVideoModelModule
 import com.apsone.clean.di.appModule
 import com.apsone.core.data.di.coreDataModule
+import com.apsone.core.database.di.databaseModule
 import com.apsone.run.di.locationModule
 import com.apsone.run.presentation.di.runViewModelModule
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +31,8 @@ class CleanApp : Application(){
                 appModule,
                 coreDataModule,
                 runViewModelModule,
-                locationModule
+                locationModule,
+                databaseModule
             )
         }
     }

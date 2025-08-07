@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.clean.android.feature.ui)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {
@@ -12,7 +13,6 @@ android {
 }
 
 dependencies {
-
     implementation(projects.core.domain)
     implementation(projects.run.domain)
     implementation(libs.androidx.core.ktx)
@@ -20,4 +20,5 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.core.ktx)
     implementation(libs.timber)
+    implementation(libs.coil.compose)
 }

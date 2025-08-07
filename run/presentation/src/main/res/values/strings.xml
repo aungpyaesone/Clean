@@ -3,4 +3,11 @@
     <string name="duration">Duration</string>
     <string name="distance">Distance</string>
     <string name="pace">Pace</string>
+    <string name="run_map">Run Map</string>
+    <string name="could_not_load_image">Couldn\'t load image</string>
+    <string name="total_running_time">Total running time</string>
+    <string name="avg_speed">Ø Speed</string>
+    <string name="max_speed">Max speed</string>
+    <string name="total_elevation">Total Elevation</string>
+    <string name="delete">Delete</string>
 </resources>

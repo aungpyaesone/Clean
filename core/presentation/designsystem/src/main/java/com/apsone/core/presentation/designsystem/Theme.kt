@@ -23,7 +23,8 @@ val DarkColorScheme = darkColorScheme(
     onBackground = CleanWhite,
     onSurface = CleanWhite,
     onSurfaceVariant = CleanGray,
-    error = CleanDarkRed
+    error = CleanDarkRed,
+    errorContainer = CleanDarkRed5
 )
 
 @RequiresApi(Build.VERSION_CODES.CUPCAKE)
